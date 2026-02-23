@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "ArtEventManager",
+  "version": "1.0.0",
+  "description": "X（旧Twitter）のAIアートイベント情報を自動検知・管理するツール",
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "identity",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://x.com/*",
+    "https://sheets.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://x.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "ArtEventManager - AIアートイベント管理",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "oauth2": {
+    "client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/spreadsheets"
+    ]
+  }
+}

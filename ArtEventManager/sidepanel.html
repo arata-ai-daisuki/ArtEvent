@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtEventManager</title>
+
+  <!-- Custom Styles (Tailwindユーティリティ含む) -->
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+
+<body class="bg-surface text-gray-50 min-h-screen font-sans antialiased">
+
+  <!-- ─── ヘッダー ─── -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-surface/90 border-b border-white/10 px-4 py-3">
+    <div class="flex items-center justify-between mb-3">
+      <div class="flex items-center gap-2">
+        <span
+          class="text-xl font-bold bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink bg-clip-text text-transparent">
+          ArtEventManager
+        </span>
+        <span class="text-xs text-gray-400 mt-1">v1.1</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span id="eventCount" class="text-xs bg-accent-blue/25 text-accent-blue px-2 py-1 rounded-full font-semibold">
+          0 件
+        </span>
+        <button id="refreshBtn" class="p-1.5 rounded-lg hover:bg-surface-hover transition-colors" title="更新">
+          <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        </button>
+        <button id="resetBtn" class="p-1.5 rounded-lg hover:bg-red-500/20 transition-colors" title="全データをリセット">
+          <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- URL収集エリア -->
+    <div class="flex gap-2">
+      <input type="text" id="collectUrlInput" placeholder="https://x.com/user/status/..."
+        class="flex-1 bg-surface-hover border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors">
+      <button id="collectBtn"
+        class="bg-accent-blue hover:bg-accent-blue/80 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1 whitespace-nowrap">
+        <span>収集</span>
+      </button>
+    </div>
+    <div id="collectStatus" class="mt-1 text-[10px] text-gray-400 min-h-[15px]"></div>
+  </header>
+
+  <!-- ─── ナビゲーションタブ ─── -->
+  <nav class="flex border-b border-white/10 px-2 sticky top-[52px] z-40 bg-surface/95 backdrop-blur-sm">
+    <button class="tab-btn active" data-tab="today">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      今日
+    </button>
+    <button class="tab-btn" data-tab="calendar">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+      カレンダー
+    </button>
+    <button class="tab-btn" data-tab="gantt">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+      ガント
+    </button>
+    <button class="tab-btn" data-tab="all">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+      </svg>
+      全件
+    </button>
+  </nav>
+
+  <!-- ─── メインコンテンツ ─── -->
+  <main class="p-4 pb-20">
+
+    <!-- 今日のイベント -->
+    <section id="todaySection" class="tab-content active">
+      <div class="flex items-center gap-2 mb-3">
+        <h2 class="text-sm font-semibold text-gray-100">🔥 今日のイベント</h2>
+        <span id="todayDate" class="text-xs text-gray-400"></span>
+      </div>
+      <div id="todayList" class="space-y-3">
+        <div class="empty-state">
+          <p class="text-gray-400 text-sm text-center py-8">今日のイベントはありません</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- カレンダー表示 -->
+    <section id="calendarSection" class="tab-content hidden">
+      <div id="calendar" class="calendar-container"></div>
+    </section>
+
+    <!-- ガントチャート -->
+    <section id="ganttSection" class="tab-content hidden">
+      <h2 class="text-sm font-semibold text-gray-100 mb-3">📊 スケジュール</h2>
+      <div id="ganttChart" class="gantt-container overflow-x-auto"></div>
+    </section>
+
+    <!-- 全イベント一覧 -->
+    <section id="allSection" class="tab-content hidden">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold text-gray-100">📋 全イベント</h2>
+        <div class="flex gap-2">
+          <button id="filterActive" class="filter-btn active" data-filter="active">未完了</button>
+          <button id="filterDone" class="filter-btn" data-filter="done">完了済</button>
+          <button id="filterAll" class="filter-btn" data-filter="all">全て</button>
+        </div>
+      </div>
+      <div id="allList" class="space-y-3">
+        <div class="empty-state">
+          <p class="text-gray-400 text-sm text-center py-8">イベントが見つかりません</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ─── イベント詳細モーダル ─── -->
+  <div id="eventModal" class="modal hidden">
+    <div id="modalBackdrop" class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="flex items-start justify-between mb-4">
+        <h3 id="modalTitle" class="text-lg font-bold text-white pr-4"></h3>
+        <button id="closeModalBtn" class="p-1 rounded hover:bg-surface-hover transition-colors">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div id="modalBody" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- Scripts (ローカル) -->
+  <script src="vendor/fullcalendar/fullcalendar.min.js"></script>
+  <script src="vendor/mermaid/mermaid.min.js"></script>
+  <script src="lib/storage.js"></script>
+  <script src="lib/parser.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+
+</html>

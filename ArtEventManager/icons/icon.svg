@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#0f0f13"/>
+    </linearGradient>
+    <linearGradient id="crystal" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="50%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#ec4899"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="url(#bg)"/>
+  <g filter="url(#glow)" transform="translate(64,64)">
+    <!-- 浮遊するクリスタル -->
+    <polygon points="0,-36 20,-8 12,28 -12,28 -20,-8" fill="url(#crystal)" opacity="0.9"/>
+    <!-- 内部の光 -->
+    <polygon points="0,-24 10,-4 6,18 -6,18 -10,-4" fill="white" opacity="0.15"/>
+    <!-- 上向き矢印 -->
+    <path d="M-8,-42 L0,-52 L8,-42" stroke="url(#crystal)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- 浮遊パーティクル -->
+    <circle cx="-22" cy="8" r="2" fill="#6366f1" opacity="0.6"/>
+    <circle cx="24" cy="-4" r="1.5" fill="#ec4899" opacity="0.5"/>
+    <circle cx="-16" cy="-20" r="1.5" fill="#8b5cf6" opacity="0.4"/>
+  </g>
+</svg>

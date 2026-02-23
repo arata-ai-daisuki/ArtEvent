@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ArtEventManager アイコン生成</title>
+    <style>
+        body {
+            background: #222;
+            color: #fff;
+            font-family: sans-serif;
+            padding: 2rem;
+        }
+
+        canvas {
+            border: 1px solid #444;
+            margin: 0.5rem;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        a {
+            color: #818cf8;
+        }
+
+        h1 {
+            color: #818cf8;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>ArtEventManager アイコン生成</h1>
+    <p>下の各キャンバスを右クリック → 「名前を付けて画像を保存」で保存してください。</p>
+    <div class="row">
+        <div>
+            <p>16x16</p><canvas id="c16" width="16" height="16"></canvas>
+        </div>
+        <div>
+            <p>48x48</p><canvas id="c48" width="48" height="48"></canvas>
+        </div>
+        <div>
+            <p>128x128</p><canvas id="c128" width="128" height="128"></canvas>
+        </div>
+    </div>
+    <p>保存先: <code>ArtEventManager/icons/</code> フォルダに <code>icon16.png</code>, <code>icon48.png</code>,
+        <code>icon128.png</code> として保存してください。
+    </p>
+
+    <script>
+        const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+      <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#1a1a2e"/>
+          <stop offset="100%" style="stop-color:#0f0f13"/>
+        </linearGradient>
+        <linearGradient id="crystal" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#6366f1"/>
+          <stop offset="50%" style="stop-color:#8b5cf6"/>
+          <stop offset="100%" style="stop-color:#ec4899"/>
+        </linearGradient>
+      </defs>
+      <rect width="128" height="128" rx="24" fill="url(#bg)"/>
+      <g transform="translate(64,64)">
+        <polygon points="0,-36 20,-8 12,28 -12,28 -20,-8" fill="url(#crystal)" opacity="0.9"/>
+        <polygon points="0,-24 10,-4 6,18 -6,18 -10,-4" fill="white" opacity="0.15"/>
+        <path d="M-8,-42 L0,-52 L8,-42" stroke="#8b5cf6" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="-22" cy="8" r="2" fill="#6366f1" opacity="0.6"/>
+        <circle cx="24" cy="-4" r="1.5" fill="#ec4899" opacity="0.5"/>
+        <circle cx="-16" cy="-20" r="1.5" fill="#8b5cf6" opacity="0.4"/>
+      </g>
+    </svg>`;
+
+        const sizes = [16, 48, 128];
+        const blob = new Blob([svgString], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(blob);
+        const img = new Image();
+        img.onload = () => {
+            sizes.forEach(size => {
+                const canvas = document.getElementById('c' + size);
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, size, size);
+            });
+            URL.revokeObjectURL(url);
+        };
+        img.src = url;
+    </script>
+</body>
+
+</html>

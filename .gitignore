@@ -1,0 +1,20 @@
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+ArtEventManager仕様書.md
+reproduce_issue.js
+test_regex.js
+.agent/
+.gemini/
+
+# Sensitive info
+# manifest.json 内の client_id は公開用プレースホルダーにすることを推奨
