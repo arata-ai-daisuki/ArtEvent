@@ -22,16 +22,6 @@ X（旧Twitter）のタイムラインからAIアートイベント情報を自�
 3. 右上の「デベロッパーモード」をONにします。
 4. 「パッケージ化されていない拡張機能を読み込む」をクリックし、ダウンロードした `ArtEventManager` フォルダを選択します。
 
-## セットアップ (Google Sheets連携)
-
-Googleスプレッドシートと連携させるには、以下の手順でクライアントIDの設定が必要です。
-
-1. [Google Cloud Console](https://console.cloud.google.com/) でプロジェクトを作成します。
-2. 「Google Sheets API」を有効にします。
-3. 「OAuth 同意画面」を設定します。
-4. 「認証情報」から「OAuth 2.0 クライアント ID」を作成します（アプリケーションの種類は「Chrome アプリ」）。
-    - アプリケーション ID に、Chromeの拡張機能管理画面で表示されているIDを入力してください。
-5. 発行されたクライアントIDを `manifest.json` の `oauth2.client_id` フィールドに記入します。
 
 ## ライセンス
 
