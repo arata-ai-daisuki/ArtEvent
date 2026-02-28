@@ -996,52 +996,143 @@ body {
   color: #111827;
 }
 
-.light-theme .bg-surface { background-color: #ffffff; }
-.light-theme .bg-surface\/90 { background-color: rgba(255, 255, 255, 0.9); }
-.light-theme .bg-surface\/95 { background-color: rgba(255, 255, 255, 0.95); }
-.light-theme .bg-surface-hover { background-color: #f3f4f6; }
+.light-theme .bg-surface {
+  background-color: #ffffff;
+}
 
-.light-theme .text-white { color: #111827; }
-.light-theme .text-gray-50 { color: #111827; }
-.light-theme .text-gray-100 { color: #1f2937; }
-.light-theme .text-gray-300 { color: #4b5563; }
-.light-theme .text-gray-400 { color: #6b7280; }
+.light-theme .bg-surface\/90 {
+  background-color: rgba(255, 255, 255, 0.9);
+}
 
-.light-theme .border-white\/5 { border-color: rgba(0, 0, 0, 0.05); }
-.light-theme .border-white\/10 { border-color: rgba(0, 0, 0, 0.1); }
-.light-theme .border-white\/15 { border-color: rgba(0, 0, 0, 0.15); }
+.light-theme .bg-surface\/95 {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.light-theme .bg-surface-hover {
+  background-color: #f3f4f6;
+}
+
+.light-theme .text-white {
+  color: #111827;
+}
+
+.light-theme .text-gray-50 {
+  color: #111827;
+}
+
+.light-theme .text-gray-100 {
+  color: #1f2937;
+}
+
+.light-theme .text-gray-300 {
+  color: #4b5563;
+}
+
+.light-theme .text-gray-400 {
+  color: #6b7280;
+}
+
+.light-theme .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+.light-theme .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .border-white\/15 {
+  border-color: rgba(0, 0, 0, 0.15);
+}
 
 /* ホバー */
-.light-theme .hover\:bg-surface-hover:hover { background-color: #e5e7eb; }
-.light-theme .hover\:bg-gray-600:hover { background-color: #d1d5db; }
+.light-theme .hover\:bg-surface-hover:hover {
+  background-color: #e5e7eb;
+}
+
+.light-theme .hover\:bg-gray-600:hover {
+  background-color: #d1d5db;
+}
 
 /* タブ */
-.light-theme .tab-btn { color: #6b7280; }
-.light-theme .tab-btn:hover { color: #111827; background: rgba(0, 0, 0, 0.05); }
-.light-theme .tab-btn.active { color: #4f46e5; border-bottom-color: #4f46e5; }
+.light-theme .tab-btn {
+  color: #6b7280;
+}
+
+.light-theme .tab-btn:hover {
+  color: #111827;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.light-theme .tab-btn.active {
+  color: #4f46e5;
+  border-bottom-color: #4f46e5;
+}
 
 /* フィルターボタン */
-.light-theme .filter-btn { color: #4b5563; background: rgba(0, 0, 0, 0.05); border-color: rgba(0, 0, 0, 0.1); }
-.light-theme .filter-btn:hover { background: rgba(0, 0, 0, 0.1); }
-.light-theme .filter-btn.active { color: #4f46e5; background: rgba(79, 70, 229, 0.1); border-color: rgba(79, 70, 229, 0.3); }
+.light-theme .filter-btn {
+  color: #4b5563;
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .filter-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .filter-btn.active {
+  color: #4f46e5;
+  background: rgba(79, 70, 229, 0.1);
+  border-color: rgba(79, 70, 229, 0.3);
+}
 
 /* イベントカード */
-.light-theme .event-card { background: #ffffff; border-color: rgba(0, 0, 0, 0.1); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
-.light-theme .event-card:hover { border-color: rgba(0, 0, 0, 0.2); background: #f9fafb; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+.light-theme .event-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .event-card:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: #f9fafb;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 /* ルール明細 */
-.light-theme .rule-item { color: #374151; }
+.light-theme .rule-item {
+  color: #374151;
+}
 
 /* モーダル */
-.light-theme .modal-content { background: #ffffff; border-color: rgba(0, 0, 0, 0.1); }
+.light-theme .modal-content {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+}
 
 /* ガントチャート */
-.light-theme .gantt-container { background: #ffffff; border-color: rgba(0, 0, 0, 0.1); }
-.light-theme .gantt-label { color: #111827; }
-.light-theme .gantt-bar-track { background: rgba(0, 0, 0, 0.05); }
-.light-theme .gantt-date-labels { border-top-color: rgba(0, 0, 0, 0.1); }
+.light-theme .gantt-container {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .gantt-label {
+  color: #111827;
+}
+
+.light-theme .gantt-bar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.light-theme .gantt-date-labels {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
 
 /* カレンダー */
+.light-theme .calendar-container {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
 .light-theme .fc {
   --fc-border-color: rgba(0, 0, 0, 0.1);
   --fc-button-text-color: #4f46e5;
@@ -1053,9 +1144,19 @@ body {
   --fc-button-active-border-color: rgba(79, 70, 229, 0.4);
   --fc-today-bg-color: rgba(79, 70, 229, 0.05);
 }
-.light-theme .fc .fc-toolbar-title { color: #111827; }
-.light-theme .fc .fc-col-header-cell-cushion, 
-.light-theme .fc .fc-daygrid-day-number { color: #4b5563; }
+
+.light-theme .fc .fc-toolbar-title {
+  color: #111827;
+}
+
+.light-theme .fc .fc-col-header-cell-cushion,
+.light-theme .fc .fc-daygrid-day-number {
+  color: #4b5563;
+}
 
 /* メモテキストエリア */
-.light-theme .memo-textarea { background: #f9fafb; border-color: rgba(0, 0, 0, 0.1); color: #111827; }
+.light-theme .memo-textarea {
+  background: #f9fafb;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #111827;
+}
